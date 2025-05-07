@@ -6,14 +6,14 @@ shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Include/core_cm3.h
-shouhuankongzhi\stm32f1xx_hal_pwr.o: D:\programFiles\KEIL5\ARM\ARMCC\Bin\..\include\stdint.h
+shouhuankongzhi\stm32f1xx_hal_pwr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Include/cmsis_version.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-shouhuankongzhi\stm32f1xx_hal_pwr.o: D:\programFiles\KEIL5\ARM\ARMCC\Bin\..\include\stddef.h
+shouhuankongzhi\stm32f1xx_hal_pwr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
@@ -23,4 +23,5 @@ shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
+shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 shouhuankongzhi\stm32f1xx_hal_pwr.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h

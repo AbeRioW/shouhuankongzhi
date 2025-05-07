@@ -18,11 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "oled.h"
+#include "ds3231.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,7 +68,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	Ds_time ds_time;
+	char show_data[20];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -86,12 +90,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
 	OLED_Init();
 	OLED_ColorTurn(0);
   OLED_DisplayTurn(0);
 	OLED_Clear();
-#if 1
+#if 0
 	OLED_ShowString(0,16,(uint8_t*)"hello",16,1);
 	OLED_Refresh();
 #endif
@@ -102,8 +107,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    
     /* USER CODE BEGIN 3 */
+		DS3231_GetTime(&ds_time);
+		sprintf(show_data,"%d-%d-%d %d:%d:%d",ds_time.year,ds_time.month,ds_time.date,ds_time.hour,ds_time.min,ds_time.sec);
+		OLED_ShowString(0,16,(uint8_t*)show_data,8,1);
+		OLED_Refresh();
+		HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
