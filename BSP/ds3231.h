@@ -18,4 +18,7 @@ typedef struct ds_time{
 
 
 HAL_StatusTypeDef DS3231_GetTime(Ds_time *ds_time);
+HAL_StatusTypeDef DS3231_WriteTime(Ds_time *time);
 #endif
+
+

@@ -30,3 +30,19 @@ HAL_StatusTypeDef DS3231_GetTime(Ds_time *ds_time)
     
     return status;
 }
+
+//设置时间
+HAL_StatusTypeDef DS3231_WriteTime(Ds_time *time) {
+    uint8_t data[7];
+    
+    data[0] = DEC2BCD(time->sec);
+    data[1] = DEC2BCD(time->min);
+    data[2] = DEC2BCD(time->hour);    
+    data[3] = DEC2BCD(time->week);
+    data[4] = DEC2BCD(time->date);
+    data[5] = DEC2BCD(time->month);
+    data[6] = DEC2BCD(time->year);
+    
+    // 写入从0x00地址开始的7个寄存器
+    return HAL_I2C_Mem_Write(&hi2c2, DS3231_ADDRESS, 0x00, 1, data, 7, HAL_MAX_DELAY);
+}
