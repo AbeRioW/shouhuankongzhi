@@ -27,5 +27,7 @@ shouhuankongzhi\ds3231.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flas
 shouhuankongzhi\ds3231.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 shouhuankongzhi\ds3231.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 shouhuankongzhi\ds3231.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+shouhuankongzhi\ds3231.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+shouhuankongzhi\ds3231.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 shouhuankongzhi\ds3231.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 shouhuankongzhi\ds3231.o: ../Core/Inc/i2c.h

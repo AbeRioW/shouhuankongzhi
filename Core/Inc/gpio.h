@@ -30,6 +30,8 @@ extern "C" {
 
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
+enum BUTTON {UNPRESSED,DOWN_BUTTON,UP_BUTTON,ENSURE_BUTTON};
+extern enum BUTTON button;
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */

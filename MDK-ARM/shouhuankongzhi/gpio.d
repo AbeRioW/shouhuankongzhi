@@ -27,5 +27,7 @@ shouhuankongzhi\gpio.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.
 shouhuankongzhi\gpio.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 shouhuankongzhi\gpio.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 shouhuankongzhi\gpio.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+shouhuankongzhi\gpio.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+shouhuankongzhi\gpio.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 shouhuankongzhi\gpio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 shouhuankongzhi\gpio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

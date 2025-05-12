@@ -28,6 +28,8 @@ shouhuankongzhi\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.
 shouhuankongzhi\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 shouhuankongzhi\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 shouhuankongzhi\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+shouhuankongzhi\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+shouhuankongzhi\oled.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 shouhuankongzhi\oled.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 shouhuankongzhi\oled.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 shouhuankongzhi\oled.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

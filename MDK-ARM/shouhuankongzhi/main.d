@@ -26,10 +26,17 @@ shouhuankongzhi\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.
 shouhuankongzhi\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 shouhuankongzhi\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 shouhuankongzhi\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+shouhuankongzhi\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+shouhuankongzhi\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 shouhuankongzhi\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 shouhuankongzhi\main.o: ../Core/Inc/i2c.h
+shouhuankongzhi\main.o: ../Core/Inc/spi.h
+shouhuankongzhi\main.o: ../Core/Inc/usart.h
 shouhuankongzhi\main.o: ../Core/Inc/gpio.h
 shouhuankongzhi\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 shouhuankongzhi\main.o: ../BSP/oled.h
 shouhuankongzhi\main.o: ../BSP/ds3231.h
 shouhuankongzhi\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+shouhuankongzhi\main.o: ../BSP/max30102.h
+shouhuankongzhi\main.o: ../BSP/adxl345.h
+shouhuankongzhi\main.o: ../BSP/ds18b20.h
