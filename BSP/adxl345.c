@@ -65,7 +65,8 @@ void ADXL345_Init(void)
     }
     
     //������������ (100Hz)
-    ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x0A);
+    //ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x0A);
+		 ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x04);
     
     //�������̺�ȫ�ֱ���ģʽ
     ADXL345_WriteRegister(ADXL345_REG_DATA_FORMAT, 0x01);
@@ -103,7 +104,7 @@ float ADXL345_ToGravity(int16_t raw, uint8_t range)
         case 2: // +-8g
             scale_factor = 16.0f / 1024.0f;
             break;
-        case 3: // �16g
+        case 3: //+-16g
             scale_factor = 32.0f / 1024.0f;
             break;
         default:
@@ -111,4 +112,54 @@ float ADXL345_ToGravity(int16_t raw, uint8_t range)
     }
     
     return raw * scale_factor;
+}
+
+// 移动平均滤波
+static float MovingAverage_Filter(StepCounter *sc, float new_value) {
+    sc->moving_avg[sc->avg_index] = new_value;
+    sc->avg_index = (sc->avg_index + 1) % 5;
+    
+    float sum = 0;
+    for(int i = 0; i < 5; i++) {
+        sum += sc->moving_avg[i];
+    }
+    return sum / 5.0f;
+}
+
+// 计步器初始化
+void StepCounter_Init(StepCounter *sc) {
+    sc->step_count = 0;
+    sc->threshold_high = 1.2f;  // 高阈值(可根据实际调整)
+    sc->threshold_low = 0.9f;   // 低阈值
+    sc->step_detected = 0;
+    sc->last_magnitude = 1.0f;  // 初始1g
+    sc->avg_index = 0;
+    for(int i = 0; i < 5; i++) {
+        sc->moving_avg[i] = 1.0f;
+    }
+}
+
+// 计步器更新函数
+// 返回1表示检测到一步，0表示无步数
+uint8_t StepCounter_Update(StepCounter *sc, float x, float y, float z) {
+    // 计算合成加速度(去除重力影响)
+    float magnitude = sqrt(x*x + y*y + z*z);
+    
+    // 移动平均滤波
+    magnitude = MovingAverage_Filter(sc, magnitude);
+    
+    uint8_t step_detected = 0;
+    
+    // 步数检测算法
+    if(!sc->step_detected && magnitude > sc->threshold_high) {
+        sc->step_detected = 1;
+    }
+    if(sc->step_detected && magnitude < sc->threshold_low) {
+        sc->step_detected = 0;
+        sc->step_count++;
+        step_detected = 1;
+    }
+    
+    sc->last_magnitude = magnitude;
+    return step_detected;
 }

@@ -10,6 +10,7 @@
 "shouhuankongzhi\gpio.o"
 "shouhuankongzhi\i2c.o"
 "shouhuankongzhi\spi.o"
+"shouhuankongzhi\tim.o"
 "shouhuankongzhi\usart.o"
 "shouhuankongzhi\stm32f1xx_it.o"
 "shouhuankongzhi\stm32f1xx_hal_msp.o"
@@ -26,9 +27,11 @@
 "shouhuankongzhi\stm32f1xx_hal_flash_ex.o"
 "shouhuankongzhi\stm32f1xx_hal_exti.o"
 "shouhuankongzhi\stm32f1xx_hal_spi.o"
+"shouhuankongzhi\stm32f1xx_hal_tim.o"
+"shouhuankongzhi\stm32f1xx_hal_tim_ex.o"
 "shouhuankongzhi\stm32f1xx_hal_uart.o"
 "shouhuankongzhi\system_stm32f1xx.o"
 --strict --scatter "shouhuankongzhi\shouhuankongzhi.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "shouhuankongzhi.map" -o shouhuankongzhi\shouhuankongzhi.axf
