@@ -36,7 +36,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+uint8_t hr_bnd=150,bo_band=100;
+uint8_t temp_band=30;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -154,19 +155,23 @@ int main(void)
 			ADXL345_ReadData(&accel_data);
 			float x_g = ADXL345_ToGravity(accel_data.x, 1); 
 			float y_g = ADXL345_ToGravity(accel_data.y, 1);
-			float z_g = ADXL345_ToGravity(accel_data.z, 1);		
+			float z_g = ADXL345_ToGravity(accel_data.z, 1);	
+			sprintf(show_data,"x:%.1f y:%.1f z:%.1f",x_g,y_g,z_g);
+			OLED_ShowString(0,40,(uint8_t*)show_data,8,1);
+			OLED_Refresh();			
 				//OLED_Refresh();
 				// 更新计步器
-				if(StepCounter_Update(&step_counter, x_g, y_g, z_g)) {
-					// 检测到一步
-					sprintf(show_data,"Step count: %d",step_counter.step_count);
-					OLED_ShowString(0,40,(uint8_t*)show_data,8,1);
-					OLED_Refresh();
-				}		
-					HAL_Delay(4);
+			  
+//				if(StepCounter_Update(&step_counter, x_g, y_g, z_g)) {
+//					// 检测到一步
+//					sprintf(show_data,"Step count: %d",step_counter.step_count);
+//					OLED_ShowString(0,40,(uint8_t*)show_data,8,1);
+//					OLED_Refresh();
+//				}		
+				//	HAL_Delay(4);
 
 
-				//显示心率和血氧
+//				//显示心率和血氧
 				Max30102_Calculate_HR_BO_Value(&HR_Value,&HR_Valid,&BO_Value,&BO_Valid);
 				if(HR_Valid==1 && BO_Valid==1)
 				{
@@ -243,13 +248,196 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void ui_setting(void)
 {
+	  int position=0;
+	  char show[30];
+	  Ds_time ds_time;
+	  DS3231_GetTime(&ds_time);
 		OLED_ShowString(20,0,(uint8_t*)"Setting",8,1);
 	  while(1)
 		{
-			OLED_ShowString(0,10,(uint8_t*)"time:2020-01-01 15:30:30",8,1);
-			OLED_ShowString(0,20,(uint8_t*)"HR:100 BO:100",8,1);
-			OLED_ShowString(0,20,(uint8_t*)"HR:100 BO:100",8,1);
+			sprintf(show,"20%02d",ds_time.year);
+			OLED_ShowString(0,10,(uint8_t*)show,8,position==0?0:1);			
+			sprintf(show,"-%02d",ds_time.month);
+			OLED_ShowString(25,10,(uint8_t*)show,8,position==1?0:1);			
+			sprintf(show,"-%02d",ds_time.date);
+			OLED_ShowString(43,10,(uint8_t*)show,8,position==2?0:1);
+			
+			sprintf(show," %02d:",ds_time.hour);
+			OLED_ShowString(67,10,(uint8_t*)show,8,position==3?0:1);			
+			sprintf(show,"%02d:",ds_time.min);
+			OLED_ShowString(91,10,(uint8_t*)show,8,position==4?0:1);			
+			sprintf(show,"%02d",ds_time.sec);
+			OLED_ShowString(109,10,(uint8_t*)show,8,position==5?0:1);
+			
+			sprintf(show,"HR:%03d ",hr_bnd);
+			OLED_ShowString(0,20,(uint8_t*)show,8,position==6?0:1);
+			sprintf(show,"BO:%03d",bo_band);
+			OLED_ShowString(50,20,(uint8_t*)show,8,position==7?0:1);
+			
+			sprintf(show,"temp:%02d",temp_band);
+			OLED_ShowString(0,30,(uint8_t*)show,8,position==8?0:1);
+			
+			OLED_ShowString(0,40,(uint8_t*)"BACK",8,position==9?0:1);
 			OLED_Refresh();
+			
+			if(button==ENSURE_BUTTON)
+		 {
+				 HAL_Delay(300);
+			   button = UNPRESSED;
+			   position++;
+			   if(position>9)
+					 position=0;
+		 }
+		 
+		 if(button==DOWN_BUTTON)
+		 {
+			 	 HAL_Delay(300);
+			   button = UNPRESSED;
+			   switch(position)
+				{
+					case 0:
+						ds_time.year--;
+            if(ds_time.year<0)
+						{
+							 ds_time.year=99;
+						}
+						break;
+					case 1:
+						ds_time.month--;
+            if(ds_time.month<1)
+						{
+							 ds_time.month=12;
+						}
+						break;
+					case 2:
+						ds_time.date--;
+            if(ds_time.date<1)
+						{
+							 ds_time.date=31;
+						}
+						break;
+					case 3:
+						ds_time.hour--;
+            if(ds_time.hour<0)
+						{
+							 ds_time.hour=23;
+						}
+						break;
+					case 4:
+						ds_time.min--;
+            if(ds_time.min<0)
+						{
+							 ds_time.min=59;
+						}
+						break;
+					case 5:
+						ds_time.min--;
+            if(ds_time.min<0)
+						{
+							 ds_time.min=59;
+						}
+						break;
+					case 6:
+						hr_bnd--;
+            if(hr_bnd<30)
+						{
+							 hr_bnd=200;
+						}
+					break;
+					case 7:
+						bo_band--;
+            if(bo_band<30)
+						{
+							 bo_band=200;
+						}
+					break;
+					case 8:
+						temp_band--;
+            if(temp_band<10)
+						{
+							 temp_band=50;
+						}
+					break;
+				}
+		 }
+		 
+		 if(button==UP_BUTTON)
+		 {
+			 	 HAL_Delay(300);
+			   button = UNPRESSED;
+			   switch(position)
+				{
+					case 0:
+						ds_time.year++;
+            if(ds_time.year>99)
+						{
+							 ds_time.year=0;
+						}
+						break;
+					case 1:
+						ds_time.month++;
+            if(ds_time.month>12)
+						{
+							 ds_time.month=1;
+						}
+						break;
+					case 2:
+						ds_time.date++;
+            if(ds_time.date>31)
+						{
+							 ds_time.date=1;
+						}
+						break;
+					case 3:
+						ds_time.hour++;
+            if(ds_time.hour>23)
+						{
+							 ds_time.hour=0;
+						}
+						break;
+					case 4:
+						ds_time.min++;
+            if(ds_time.min>59)
+						{
+							 ds_time.min=0;
+						}
+						break;
+					case 5:
+						ds_time.min++;
+            if(ds_time.min>59)
+						{
+							 ds_time.min=0;
+						}
+						break;
+					case 6:
+						hr_bnd++;
+            if(hr_bnd>200)
+						{
+							 hr_bnd=30;
+						}
+					break;
+					case 7:
+						bo_band++;
+            if(bo_band>200)
+						{
+							 bo_band=30;
+						}
+					break;
+					case 8:
+						temp_band++;
+            if(temp_band>50)
+						{
+							 temp_band=10;
+						}
+					break;
+					case 9:
+					OLED_Clear();
+					DS3231_WriteTime(&ds_time);
+					return;
+					break;
+				}
+		 }
+			
 		}
 }
 /* USER CODE END 4 */

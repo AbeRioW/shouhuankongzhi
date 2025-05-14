@@ -30,13 +30,23 @@ Build target 'shouhuankongzhi'
 compiling main.c...
 ../BSP/max30102.h(41): warning:  #1-D: last line of file ends without a newline
   #endif
-../Core/Src/main.c(85): warning:  #177-D: variable "page_count"  was declared but never referenced
+../Core/Src/main.c(86): warning:  #177-D: variable "page_count"  was declared but never referenced
   	static int page_count=0;
-../Core/Src/main.c: 2 warnings, 0 errors
+../Core/Src/main.c(300): warning:  #186-D: pointless comparison of unsigned integer with zero
+              if(ds_time.year<0)
+../Core/Src/main.c(321): warning:  #186-D: pointless comparison of unsigned integer with zero
+              if(ds_time.hour<0)
+../Core/Src/main.c(328): warning:  #186-D: pointless comparison of unsigned integer with zero
+              if(ds_time.min<0)
+../Core/Src/main.c(335): warning:  #186-D: pointless comparison of unsigned integer with zero
+              if(ds_time.min<0)
+../Core/Src/main.c(437): warning:  #111-D: statement is unreachable
+  					break;
+../Core/Src/main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=22218 RO-data=8446 RW-data=60 ZI-data=13468  
+Program Size: Code=21796 RO-data=8448 RW-data=64 ZI-data=13472  
 FromELF: creating hex file...
-"shouhuankongzhi\shouhuankongzhi.axf" - 0 Error(s), 2 Warning(s).
+"shouhuankongzhi\shouhuankongzhi.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 

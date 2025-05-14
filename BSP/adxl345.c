@@ -65,8 +65,8 @@ void ADXL345_Init(void)
     }
     
     //设置数据速率 (100Hz)
-    //ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x0A);
-		 ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x04);
+    ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x0A);
+		//ADXL345_WriteRegister(ADXL345_REG_BW_RATE, 0x03);
     
     //设置量程和全分辨率模式
     ADXL345_WriteRegister(ADXL345_REG_DATA_FORMAT, 0x01);
