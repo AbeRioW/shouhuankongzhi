@@ -41,7 +41,9 @@ extern enum BUTTON button;
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void beep_led_control(bool open);
+void beep_control(bool open);
+void led1_control(bool open);
+void led2_control(bool open);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

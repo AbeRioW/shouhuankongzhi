@@ -439,6 +439,6 @@ void oled_showFnum(uint8_t x,uint8_t y,float fnum,uint8_t size1,uint8_t mode)
 		uint8_t Data[]=" ";
 		sprintf(Data,"%.03f C",fnum);
 		OLED_ShowString(x,y,(uint8_t*)Data,size1,mode);
-	  //HAL_UART_Transmit(&huart2,Data,12,0xffff);
+	  HAL_UART_Transmit(&huart2,Data,12,0xffff);
 }
 

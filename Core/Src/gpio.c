@@ -55,7 +55,7 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, OLED_DC_Pin|OLED_CS_Pin|DS18B20_Pin|LED_Pin
-                          |BEEP_Pin, GPIO_PIN_SET);
+                          |BEEP_Pin|LED2_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_SET);
@@ -67,8 +67,10 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : OLED_DC_Pin OLED_CS_Pin LED_Pin BEEP_Pin */
-  GPIO_InitStruct.Pin = OLED_DC_Pin|OLED_CS_Pin|LED_Pin|BEEP_Pin;
+  /*Configure GPIO pins : OLED_DC_Pin OLED_CS_Pin LED_Pin BEEP_Pin
+                           LED2_Pin */
+  GPIO_InitStruct.Pin = OLED_DC_Pin|OLED_CS_Pin|LED_Pin|BEEP_Pin
+                          |LED2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
@@ -110,11 +112,21 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
-void beep_led_control(bool open)
+void beep_control(bool open)
 {
 	HAL_GPIO_WritePin(GPIOA, BEEP_Pin, open?GPIO_PIN_RESET:GPIO_PIN_SET);
+}
+
+void led1_control(bool open)
+{
 	HAL_GPIO_WritePin(GPIOA, LED_Pin, open?GPIO_PIN_RESET:GPIO_PIN_SET);
 }
+
+void led2_control(bool open)
+{
+	HAL_GPIO_WritePin(GPIOA, LED2_Pin, open?GPIO_PIN_RESET:GPIO_PIN_SET);
+}
+
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {

@@ -38,6 +38,7 @@
 /* USER CODE BEGIN PTD */
 uint8_t hr_bnd=150,bo_band=100;
 uint8_t temp_band=30;
+int step_count;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -130,6 +131,7 @@ int main(void)
 	OLED_ShowString(0,16,(uint8_t*)"hello",16,1);
 	OLED_Refresh();
 #endif
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -138,7 +140,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */		
+    /* USER CODE BEGIN 3 */
 			 if(timer1_up)
 			{
 				timer1_up = false;
@@ -163,8 +165,10 @@ int main(void)
 				// 更新计步器
 			  
 //				if(StepCounter_Update(&step_counter, x_g, y_g, z_g)) {
+//			if(z_g>1.5)
+//			{
 //					// 检测到一步
-//					sprintf(show_data,"Step count: %d",step_counter.step_count);
+//					sprintf(show_data,"Step count: %d",step_count);
 //					OLED_ShowString(0,40,(uint8_t*)show_data,8,1);
 //					OLED_Refresh();
 //				}		
@@ -184,6 +188,15 @@ int main(void)
 			
 					sprintf(uart_send,"HR:%03d BO:%03d",HR_Value,BO_Value);
 					HAL_UART_Transmit(&huart2,(uint8_t*)uart_send,13,0xffff);
+					
+					if(HR_Value>hr_bnd||BO_Value>bo_band)
+					{
+							led1_control(true);
+					}
+					else
+					{
+						 led1_control(false);	
+					}
 				}
 
 				// HAL_UART_Transmit(&huart2,(uint8_t*)show_data,21,0xffff);
@@ -192,6 +205,14 @@ int main(void)
 				num_d = Get_DS_Temperature();		
 				oled_showFnum(1,30,num_d,8,1);
 				OLED_Refresh();	
+				if(num_d>temp_band)
+				{
+						led2_control(true);	
+				}
+				else
+				{
+						led2_control(false);	
+				}
 	
 		 if(button==ENSURE_BUTTON)
 		 {
